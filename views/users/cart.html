@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>我的购物车</title>
+  <link rel="stylesheet" type="text/css" href="/depot/css/share.css">
+  <link rel="stylesheet" type="text/css" href="/depot/css/cart.css">
+</head>
+<body class="body">
+<div class="nav">
+  <div class="nav-centre">
+    <a href="/">首页</a>
+    {{if eq .InfoP.S  "未登录"}}
+      <a href="/login">登录</a>
+      <a href="/register">用户注册</a>
+      <a href="/registerSeller">商户注册</a>
+    {{else}}
+      {{if eq .InfoP.S  "买家"}}
+        <a href="/LoginOut">注销</a>
+        <a href="/registerSeller">商户注册</a>
+        <a href="/buyer">我的订单</a>
+      {{else}}
+        <a href="/LoginOut">注销</a>
+        <a href="/register">个人用户注册</a>
+        <a href="/seller">我的订单</a>
+      {{end}}
+
+    {{end}}
+  </div>
+</div>
+<div class="main">
+  <p>我的购物车</p>
+{{range .Cart}}
+    <a class="cart-delete">编辑购物车商品</a>
+    <form action="/cart" method="post">
+    <div class="cart-mini">
+      <p>店铺名:{{.Book.SellerPutaway}}</p>
+    <label class="cart-mini-checkbox"> <input name="goodsSelect" type="checkbox" value="{{.Book.Id}}" checked="checked">
+    </label>
+  <img src="{{.Book.ImgPath}}" class="cart-mini-img">
+  <p class="cart-mini-title">{{.Book.Title}}</p>
+      <br>
+  <p>数量：{{.Amount}}</p>
+      <p class="cart-mini-money">金额：{{.SoleMoney}}</p>
+
+    </div>
+    <p>共？件商品</p>
+    <span>总金额:</span>
+    <input type="submit" value="结账">
+  </form>
+{{else}}<a href="/">还没添加你喜欢的商品哦！现在去挑选</a>{{end}}
+
+</div>
+</body>
+</html>

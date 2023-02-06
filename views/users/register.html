@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>识趣</title>
+  <script src="/depot/layui/layui.js"></script>
+  <link rel="stylesheet" href="/depot/layui/css/layui.css" tppabs="/depot/layui/css/layui.css" media="all">
+  <script src="/depot/js/formV.js"></script>
+  <script src="/depot/js/jquery-1.7.2.js"></script>
+  <script src="/depot/js/login.js"></script>
+</head>
+
+<body style="background-color: #edf2f7">
+
+<div class="layui-layout layui-layout-admin">
+  <!--导航栏-->
+  <div class="layui-row" >
+    <div class="layui-col-md12 layui-col-sm12"  style="box-shadow:
+  2.1px 2.1px 1.7px rgba(0, 0, 0, 0.024),
+  2.7px 2.7px 4.3px rgba(0, 0, 0, 0.035),
+  3.6px 3.6px 6px rgba(0, 0, 0, 0.047),
+  6px 6px 7px rgba(0, 0, 0, 0.06)
+;">
+      <ul class="layui-nav layui-bg-cyan layui-nav-child-c" lay-filter="" style="box-shadow:
+  2.1px 2.1px 1.7px rgba(0, 0, 0, 0.024),
+  2.7px 2.7px 4.3px rgba(0, 0, 0, 0.035),
+  3.6px 3.6px 6px rgba(0, 0, 0, 0.047),
+  6px 6px 7px rgba(0, 0, 0, 0.06)
+;" >
+        <li class="layui-nav-item "><a></a></li>
+        <li class="layui-nav-item "><a href="/">首页</a></li>
+        <li class="layui-nav-item "><a href="">图书阅读</a></li>
+        <li class="layui-nav-item"><a href="">电子数码</a></li>
+        <li class="layui-nav-item"><a href="">生活用品</a></li>
+        <li class="layui-nav-item"><a href="">品会分享</a></li>
+        <li class="layui-nav-item"><a href="">一夜暴富</a></li>
+        <li class="layui-nav-item" id="logins">
+          <a  ><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">修改信息</a></dd>
+            <dd><a href="/buyer">我的订单</a></dd>
+            <dd><a href="/LoginOut">退出登录</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item" id="login">
+          <a href="/" id="login">登录</a>
+        </li>
+
+      </ul>
+    </div>
+    <script>
+      $.ajax(
+              {
+                url:"/test",
+                type:"get",
+                data:"",
+                dataType:"json",
+                success:function (data) {
+                  if (data.Name!=""){
+                    document.getElementById("login").style.display="none";
+                  }else {
+                    document.getElementById("logins").style.display="none";
+                  }
+                }
+              }
+      )
+    </script>
+  </div>
+  <div class="layui-row">
+    <div class="layui-col-md12">
+      <div class="layui-col-md4 layui-col-md-offset4">
+        <div style="background-color: #FFFFFF;height: 600px;border-radius:10px;margin-top: 10px;box-shadow:
+  0px 0px 1.7px rgba(0, 0, 0, 0.024),
+  0px 0px 4.3px rgba(0, 0, 0, 0.035),
+  0px 0px 6px rgba(0, 0, 0, 0.047),
+  0px 0px 7px rgba(0, 0, 0, 0.06)
+;">
+          <div style="height: 30px;text-align: center" >
+            <h6>开店大吉</h6>
+          </div>
+          <hr class="layui-border-green " style="margin: 20px">
+          <div>
+            <form method="post" id="register" action="/register">
+              <div class="layui-row" >
+                <div class="layui-col-md8 layui-col-md-offset3">
+                  <div class="layui-row">
+                    <div class="layui-col-md12 layui-form-item">
+                      <div class="layui-col-md5 layui-form-label" style="width: 110px;font-size: 15px;text-align: center">用户名:</div>
+                      <div class="layui-col-md6 layui-input-inline"><input class="layui-input"  style="border-radius: 7px;" name="name" id="name" onblur="FormMiniVerify('name')"></div>
+                      <div class="layui-col-md1 layui-form-mid layui-word-aux"><i id="err_name" style="font-size: 25px;" ></i></div>
+                    </div>
+                  </div>
+                  <div class="layui-row">
+                    <div class="layui-col-md12 layui-form-item">
+                      <div class="layui-col-md5 layui-form-label" style="width: 110px;font-size: 15px;text-align: center">密码:</div>
+                      <div class="layui-col-md6 layui-input-inline"><input class="layui-input"  style="border-radius: 7px;" type="password" name="password" id="password" placeholder="必填" onblur="FormMiniVerify('password')"></div>
+                      <div class="layui-col-md1 layui-form-mid layui-word-aux"><i id="err_password" style="font-size: 25px;" ></i></div>
+                    </div>
+                  </div>
+                  <div class="layui-row">
+                    <div class="layui-col-md12 layui-form-item">
+                      <div class="layui-col-md5 layui-form-label" style="width: 110px;font-size: 15px;text-align: center">邮箱:</div>
+                      <div class="layui-col-md6 layui-input-inline"><input class="layui-input"  style="border-radius: 7px;" name="email" id="email" onblur="FormMiniVerify('email')"></div>
+                      <div class="layui-col-md1 layui-form-mid layui-word-aux"><i id="err_email" style="font-size: 25px;" ></i></div>
+                    </div>
+                  </div>
+                  <div class="layui-row">
+                    <div class="layui-col-md12 layui-form-item">
+                      <div class="layui-col-md5 layui-form-label" style="width: 110px;font-size: 15px;text-align: center">手机号码:</div>
+                      <div class="layui-col-md6 layui-input-inline"><input class="layui-input"  style="border-radius: 7px;" name="phone" id="phone" placeholder="必填" onblur="FormMiniVerify('phone')"></div>
+                      <div class="layui-col-md1 layui-form-mid layui-word-aux"><i id="err_phone" style="font-size: 25px;" ></i></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="layui-row" style="text-align: center">
+                <button type="submit" class="layui-btn layui-btn-lg" onclick="registerSeller()" >注册店铺</button>
+              </div>
+            </form>
+          </div>
+          <script>
+            $('#register').submit(function (a) {
+              a.preventDefault()
+            })
+            function registerSeller(){
+              sellerName=$("input[name='sellerName']").val();
+              password=$("input[name='password']").val();
+              name=$("input[name='name']").val();
+              number=$("input[name='number']").val();
+              email=$("input[name='email']").val();
+              phone=$("input[name='phone']").val();
+              if(name==""||password==""||phone==""){
+                layer.msg("必选项不能为空！", {
+                  icon: 10
+                  ,time:1000
+                  ,shade:[0.8, 'rgba(0,0,0,0.85)']
+                  ,nim: 5
+                });
+                return
+              }
+              $.ajax({
+                url: "/register",
+                type: "post",
+                data:"username="+name+"&password="+password+"&email="+email+"&phone="+phone,
+                dataType: "text",
+                success:function (data) {
+                  if (data=="注册成功！"){
+                    layer.msg(data, {
+                      icon: 1
+                      ,shade: 0.01
+                      ,time:1000
+                      ,shade:[0.8, 'rgba(0,0,0,0.85)']
+                      ,nim: 5
+                    });
+                    function send(){
+                      window.location.href='/';
+                    }
+                    setTimeout(send,1000);
+                  }else if (data){
+                    layer.msg(data, {
+                      icon: 2
+                      ,shade: 0.01
+                      ,time:1000
+                      ,shade:[0.8, 'rgba(0,0,0,0.85)']
+                      ,nim: 6
+                    });
+                  }
+                }
+              })
+            }
+          </script>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--    页脚-->
+
+</div>
+</body>
+</html>

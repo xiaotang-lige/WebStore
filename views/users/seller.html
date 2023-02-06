@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>卖家店铺</title>
+  <link rel="stylesheet" type="text/css" href="/depot/css/share.css">
+  <link rel="stylesheet" type="text/css" href="/depot/css/orderForm.css">
+</head>
+<body class="body">
+<div class="nav">
+  <div class="nav-centre">
+    <a href="/">首页</a>
+    {{if eq .InfoP.S  "未登录"}}
+      <a href="/login">登录</a>
+      <a href="/register">用户注册</a>
+      <a href="/registerSeller">商户注册</a>
+    {{else}}
+      {{if eq .InfoP.S  "买家"}}
+        <a href="/LoginOut">注销</a>
+        <a href="/registerSeller">商户注册</a>
+        <a href="/">我的订单</a>
+      {{else}}
+        <a href="/LoginOut">注销</a>
+        <a href="/register">个人用户注册</a>
+        <a href="/seller">我的订单</a>
+      {{end}}
+
+    {{end}}
+  </div>
+</div>
+<div class="main">
+  <p>个人订单</p>
+  <hr>
+  <a href="/buyer">查看个人订单</a>
+  <br>
+  <P>客户订单</P>
+  <hr>
+{{range .BuyerFormS}}
+  <div class="sellerMini"><a href="/details?bookId={{.OneBook.Id}}">
+    <img class="sellerMiniImag" src="{{.OneBook.ImgPath}}">
+    <div class="sellerMini-title">标题:{{.OneBook.Title}}  </div>
+    <div class="sellerMini-title">数量:</div>
+    <div class="sellerMini-title">价格:{{.AllPrice}}  </div>
+    <div class="sellerMini-title">客户:{{.Client}}  </div>
+    </a>
+    {{if eq .State 0}}
+    <a class="sellerMini-deliverGoods">客户未付款</a>
+    {{end}}
+    {{if eq .State 1}}
+    <a class="sellerMini-deliverGoods" href="/deliverGoods?orderId={{.Id}}">发货</a>
+    {{end}}
+    {{if eq .State 2}}
+    <a class="sellerMini-deliverGoods" >已发货</a>
+    {{end}}
+    {{if eq .State 3}}
+      <a class="sellerMini-deliverGoods" >客户已取消订单</a>
+    {{end}}
+    {{if eq .State 4}}
+      <a class="sellerMini-deliverGoods" >订单完成</a>
+    {{end}}
+    {{if eq .State 5}}
+      <a class="sellerMini-deliverGoods" >客户发起退款</a>
+    {{end}}
+  </div>
+{{end}}
+</div>
+</body>
+</html>

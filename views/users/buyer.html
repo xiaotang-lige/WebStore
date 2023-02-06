@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>卖家店铺</title>
+  <link rel="stylesheet" type="text/css" href="/depot/css/share.css">
+  <link rel="stylesheet" type="text/css" href="/depot/css/orderForm.css">
+</head>
+<body class="body">
+<div class="nav">
+  <div class="nav-centre">
+    <a href="/">首页</a>
+    {{if eq .InfoP.S  "未登录"}}
+      <a href="/login">登录</a>
+      <a href="/register">用户注册</a>
+      <a href="/registerSeller">商户注册</a>
+    {{else}}
+        <a href="/LoginOut">注销</a>
+        <a href="/registerSeller">商户注册</a>
+    {{end}}
+  </div>
+</div>
+<div class="main">
+  <P>{{.BuyerName}}</P>
+  <br>
+  <br>
+  <br>
+  <p>我购买的商品</p>
+  <hr>
+  {{range .OrderForm}}
+    <div class="sellerMini">
+      <a href="/details?bookId={{.OneBook.Id}}">
+      <img class="sellerMiniImag" src="{{.OneBook.ImgPath}}">
+      <div class="sellerMini-title">标题:{{.OneBook.Title}}  </div>
+      </a>
+      <div class="sellerMini-title">数量:</div>
+      <div class="sellerMini-title">价格:{{.AllPrice}}  </div>
+      <div class="sellerMini-title">客户:{{.Client}}  </div>
+      {{if eq .State 0}}
+        <a class="sellerMini-deliverGoods" href="/play?orderId={{.Id}}">支付</a>
+          <br>
+        <br>
+          <a class="sellerMini-deliverGoods" href="/playmini?state=3&&orderId={{.Id}}">取消订单</a>
+      {{end}}
+      {{if eq .State 1}}
+        <a class="sellerMini-deliverGoods">已付款</a>
+        <br>
+        <br>
+        <a class="sellerMini-deliverGoods" href="/playmini?state=5&&orderId={{.Id}}">退款</a>
+      {{end}}
+      {{if eq .State 2}}
+        <a class="sellerMini-deliverGoods" >已发货</a>
+          <br>
+        <a class="sellerMini-deliverGoods" href="/playmini?state=4&&orderId={{.Id}}" >确认收货</a>
+      {{end}}
+      {{if eq .State 3}}
+        <p class="sellerMini-deliverGoods">订单已取消</p>
+      {{end}}
+      {{if eq .State 4}}
+        <p class="sellerMini-deliverGoods">订单已完成</p>
+      {{end}}
+      {{if eq .State 5}}
+        <p class="sellerMini-deliverGoods">订单已关闭，退款完成</p>
+      {{end}}
+    </div>
+  {{end}}
+</div>
+</body>
+</html>

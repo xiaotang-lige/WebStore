@@ -1,0 +1,21 @@
+.hone-mini{
+    width: 15%;
+    float: left;
+    background-color: rgb(239, 242, 246);
+    margin: 5px;
+    padding: 5px;
+    box-shadow:
+            0.3px 0.3px 0.6px -4px rgba(0, 0, 0, 0.079),
+            0.8px 0.9px 1.6px -4px rgba(0, 0, 0, 0.097),
+            1.8px 2.1px 3.9px -4px rgba(0, 0, 0, 0.109),
+            6px 7px 13px -4px rgba(0, 0, 0, 0.15)
+;
+
+}
+
+.hone-mini-img{
+    width: 100%;
+    height: auto;
+    margin: 0;
+   
+}

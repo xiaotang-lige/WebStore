@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正在支付</title>
+    <link rel="stylesheet" type="text/css" href="/depot/css/share.css">
+</head>
+<body class="body">
+<div class="nav">
+    <div class="nav-centre">
+        <a href="/">首页</a>
+        {{if eq .InfoP.S  "未登录"}}
+            <a href="/login">登录</a>
+            <a href="/register">用户注册</a>
+            <a href="/registerSeller">商户注册</a>
+        {{else}}
+            {{if eq .InfoP.S  "买家"}}
+                <a href="/LoginOut">注销</a>
+                <a href="/registerSeller">商户注册</a>
+                <a href="/buyer">我的订单</a>
+            {{else}}
+                <a href="/LoginOut">注销</a>
+                <a href="/register">个人用户注册</a>
+                <a href="/seller">我的订单</a>
+            {{end}}
+        {{end}}
+    </div>
+</div>
+<div class="main">
+<input name="play" type="button" onclick="" value="微信支付">
+<input name="watch" type="button" onclick="" value="支付宝支付">
+    {{if .Bool}}
+        <span class="glyphicon glyphicon-ok" aria-hidden="true">付款成功！</span>
+    {{end}}
+</div>
+</body>
+</html>

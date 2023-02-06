@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var _uname = document.getElementById("uname"); //名字输入框
+    var _unameInfo = document.getElementById("unameInfo"); //名字提示框
+    _uname.onblur = function() {
+        //每次失去焦点前先清空提示
+        _unameInfo.innerHTML = "";
+        //获取用户输入的名字
+        var uname = _uname.value;
+        var noNumber = true; //不能为数字
+        //验证是否符合格式
+        //非空验证
+        if (uname == "" || _uname == undefined) {
+            _unameInfo.innerHTML = "名字不能为空";
+            return;
+        }
+        //验证是否为数字
+        for (var i = 0; i < uname.length; i++) {
+            //是一个数值时
+            if (!isNaN(uname.charAt(i))) {
+                noNumber = false;
+                break;
+            }
+        }
+        if (!noNumber) {
+            _unameInfo.innerHTML = "名字不能有数字";
+            return;
+        }
+    }
+</script>
+<form>
+<input type="text" required name="name">
+<input type="submit" value="asd"></form>
+</body>
+</html>

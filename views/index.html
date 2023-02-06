@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>识趣</title>
+    <script src="/depot/layui/layui.js"></script>
+    <link rel="stylesheet" href="/depot/layui/css/layui.css" tppabs="/depot/layui/css/layui.css" media="all">
+    <script src="/depot/js/formV.js"></script>
+    <script src="/depot/js/jquery-1.7.2.js"></script>
+    <script src="/depot/js/login.js"></script>
+</head>
+<style>
+    #aBody:hover{
+        box-shadow:
+                0px 0px 0.3px rgba(0, 0, 0, 0.081),
+                0px 0px 0.9px rgba(0, 0, 0, 0.115),
+                0px 0px 2.1px rgba(0, 0, 0, 0.145),
+                0px 0px 4.4px rgba(0, 0, 0, 0.179),
+                0px 0px 7px rgba(0, 0, 0, 0.26);
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+</style>
+<body style="background-color: #edf2f7">
+
+<div class="layui-layout layui-layout-admin">
+    <!--导航栏-->
+    <div class="layui-row" >
+        <div class="layui-col-md12 layui-col-sm12"  style="box-shadow:
+  2.1px 2.1px 1.7px rgba(0, 0, 0, 0.024),
+  2.7px 2.7px 4.3px rgba(0, 0, 0, 0.035),
+  3.6px 3.6px 6px rgba(0, 0, 0, 0.047),
+  6px 6px 7px rgba(0, 0, 0, 0.06)
+;">
+            <ul class="layui-nav layui-bg-cyan layui-nav-child-c" lay-filter="" style="box-shadow:
+  2.1px 2.1px 1.7px rgba(0, 0, 0, 0.024),
+  2.7px 2.7px 4.3px rgba(0, 0, 0, 0.035),
+  3.6px 3.6px 6px rgba(0, 0, 0, 0.047),
+  6px 6px 7px rgba(0, 0, 0, 0.06)
+;" >
+                <li class="layui-nav-item "><a></a></li>
+                <li class="layui-nav-item "><a href="/">首页</a></li>
+                <li class="layui-nav-item "><a href="">图书阅读</a></li>
+                <li class="layui-nav-item"><a href="">电子数码</a></li>
+                <li class="layui-nav-item"><a href="">生活用品</a></li>
+                <li class="layui-nav-item"><a href="">品会分享</a></li>
+                <li class="layui-nav-item"><a href="">一夜暴富</a></li>
+                <li class="layui-nav-item" id="logins">
+                    <a  ><img src="//t.cn/RCzsdCq" class="layui-nav-img">我</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">修改信息</a></dd>
+                        <dd><a href="/buyer">我的订单</a></dd>
+                        <dd><a href="/LoginOut">退出登录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item" id="login">
+                    <a href="/" id="login">登录</a>
+                </li>
+
+            </ul>
+        </div>
+        <script>
+            $.ajax(
+                {
+                    url:"/test",
+                    type:"get",
+                    data:"",
+                    dataType:"json",
+                    success:function (data) {
+                        if (data.Name!=""){
+                            document.getElementById("login").style.display="none";
+                        }else {
+                            document.getElementById("logins").style.display="none";
+                        }
+                    }
+                }
+            )
+        </script>
+        </div>
+    <div class="layui-row"  >
+        <div class="layui-col-md8  layui-col-sm12 layui-col-md-offset2  "  >
+<!--            轮番图-->
+            <div class="layui-row layui-col-space20">
+                <div class="layui-col-md8 layui-col-sm12"  >
+                    <div class="layui-carousel" id="test1" style="border-radius: 10px;margin-top:10px;box-shadow:
+                        0px 0px 1.7px rgba(0, 0, 0, 0.024),
+                        0px 0px 4.3px rgba(0, 0, 0, 0.035),
+                        0px 0px 6px rgba(0, 0, 0, 0.047),
+                        0px 0px 7px rgba(0, 0, 0, 0.06)
+                        ;" >
+                        <div carousel-item style="border-radius: 10px;">
+                        <div><img src="/depot/img/Spill-Of-Colors (2).png"></div>
+                        <div><img src=""></div>
+                        <div><img src=""></div>
+                        <div><img src=""></div>
+                        <div><img src=""></div>
+                    </div>
+                    </div>
+
+                            <script>
+                    layui.use('carousel', function(){
+                        var carousel = layui.carousel;
+                        //建造实例
+                        carousel.render({
+                            elem: '#test1'
+                            ,width: '100%' //设置容器宽度
+                            ,arrow: 'hover' //始终显示箭头
+                            //,anim: 'updown' //切换动画方式
+                            ,indicator:'outside'
+                            ,height:'300px'
+                        });
+                    });
+                </script>
+                </div>
+                <div class="layui-col-md4 layui-col-sm12">
+                <div  class="layui-row" style="background-color: #FFFFFF;border-radius: 10px;margin-top:10px;box-shadow:
+  0px 0px 1.7px rgba(0, 0, 0, 0.024),
+  0px 0px 4.3px rgba(0, 0, 0, 0.035),
+  0px 0px 6px rgba(0, 0, 0, 0.047),
+  0px 0px 7px rgba(0, 0, 0, 0.06)
+;">                {{if eq .InfoP.S  "未登录"}}
+                    <form class="layui-form" action="/login" method="post" id="loginForm" >
+                    <div class="layui-row"><div class="layui-card" style="border-radius: 10px;">
+                            <div class="layui-card-header layui-col-md4">欢迎来到识趣</div>
+                        </div></div>
+                    <div class="layui-row"><div class="layui-col-md10 layui-col-md-offset1"><hr class="layui-border-green"></div> </div>
+                    <div class="layui-row" style="margin-top: 10px">
+                        <div class="layui-form-item" style="padding-left: 20px">
+                            <label class="layui-form-label">账号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="phone" placeholder="手机号码" required  lay-verify="required" autocomplete="off" class="layui-input" id="phone" onblur="FormMiniVerify('phone')">                            </div>
+                            <i id="err_phone" style="font-size: 30px; " ></i>
+                        </div>
+
+                    </div>
+                    <div class="layui-row">
+                        <div class="layui-form-item" style="padding-left: 20px">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="password" required lay-verify="required"  autocomplete="off" class="layui-input" onblur="FormMiniVerify('password')">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux "><i class="layui-icon " style="font-size: 30px; color: #009688;" id="err_password"></i></div>
+                        </div>
+                    </div>
+                    <div class="layui-row" style="margin-bottom:10px ">
+                        <div class="layui-col-md12">
+                            <div class="layui-col-md6 layui-col-md-offset3" >
+                                <button type="submit" class="layui-btn layui-btn-fluid" lay-filter="formDemo"  style="margin: 5px;height: 50px" onclick="oC()">登录</button>
+                            </div>
+                        </div>
+                    </div>
+                        <script>
+                            $('#loginForm').submit(function (e) {
+                                e.preventDefault()
+                            })
+                            function oC() {
+                                var name = $("input[name='phone']").val();
+                                var password = $("input[name='password']").val();
+                                if (name==""||password==""){
+                                    layer.msg("账号密码不能为空！", {
+                                        icon: 10
+                                        ,shade: 0.01
+                                        ,time:1000
+                                        ,shade:[1, 'rgba(37,37,37,0.66)']
+                                    });
+                                    return;
+                                }
+                                $.ajax({
+                                    url : "/login", //请求路径，和form中action属性作用一样
+                                    type : "post", //请求方式，和form中method属性作用一样
+                                    // 请求参数，name1=value1&name2=value2&name3=value3
+                                    data : "phone=" + name + "&password=" + password,
+                                    dataType : "text",// Java 端返回的数据类型
+                                    success : function(data) {
+                                        // 请求成功返回数据时回调的方法
+                                        if (data=="登录成功！"){
+                                            layer.msg("登陆成功", {
+                                                icon: 1
+                                                ,shade: 0.01
+                                                ,time:1000
+                                                ,shade:[0.8, 'rgba(0,0,0,0.85)']
+                                                ,nim: 5
+                                            });
+                                            function send(){
+                                                window.location.href='/';
+                                            }
+                                            setTimeout(send,1000);
+                                        }else if (data=="卖家登录成功！"){
+                                            layer.msg("商户登录成功", {
+                                                icon: 1
+                                                ,time:1000
+                                                ,shade:[0.8, 'rgba(0,0,0,0.85)']
+                                                ,nim: 5
+                                            });
+                                            function send1(){
+                                                window.location.href='/';
+                                            }
+                                            setTimeout(send1,1000);
+                                        }else if (data=="用户名或密码不正确！"){
+                                            layer.msg(data, {
+                                                icon: 2
+                                                ,time:1000
+                                                ,shade:[0.8, 'rgba(0,0,0,0.85)']
+                                                ,nim: 5
+                                            });
+                                        }else if (data=="格式输入错误!"){
+                                            layer.msg(data, {
+                                                icon: 2
+                                                ,time:1000
+                                                ,shade:[0.8, 'rgba(0,0,0,0.85)']
+                                                ,nim: 5
+                                            });
+                                        }
+                                    }
+                                });
+                            }
+                        </script>
+                    </form>
+
+
+
+                            
+                    {{end}}
+                    {{if eq .InfoP.S  "买家"}}
+                        <div class="layui-row">
+                            <div class="layui-col-md12">
+                                <div class="layui-col-md4 layui-col-md-offset3">
+                                <img  src="/depot/img/logo.jpg" style="border-radius: 50px;width: 100px;height: 100px;margin: 40px"></div>
+                            </div>
+                        </div>
+                            <div class="layui-row"><p>昵称：{{.User.UserName}}</p></div>
+                            <a href="/buyer"><button class="layui-btn layui-btn-sm">我的订单 </button></a>
+                        <a href="/cart"><button class="layui-btn layui-btn-sm">我的购物车 </button></a>
+                        <a><button class="layui-btn layui-btn-sm">待发货</button></a>
+                        <a><button class="layui-btn layui-btn-sm">待付款</button></a>
+                        <a href="/LoginOut"><button class="layui-btn layui-btn-sm">退出登录</button> </a>
+                    {{end}}
+                    {{if eq .InfoP.S "卖家"}}
+                        <div class="layui-row">
+                            <div class="layui-col-md12">
+                                <div class="layui-col-md4 layui-col-md-offset3">
+                                    <img  src="/depot/img/logo.jpg" style="border-radius: 50px;width: 100px;height: 100px;margin: 40px"></div>
+                            </div>
+                        </div>
+                            <h6>店铺名:{{.User.SellerName}}</h6>
+                        <div class="layui-row"><p>昵称：{{.User.UserName}}</p></div>
+                        <a href="/seller"><button class="layui-btn layui-btn-sm">客户订单 </button></a>
+                        <a href="/buyer"><button class="layui-btn layui-btn-sm">我的订单 </button></a>
+                        <a href="/cart"><button class="layui-btn layui-btn-sm">我的购物车 </button></a>
+                        <a><button class="layui-btn layui-btn-sm">待发货</button></a>
+                        <a><button class="layui-btn layui-btn-sm">待付款</button></a>
+                        <a href="/putaway?type=home&Current=1"><button class="layui-btn layui-btn-sm">商品管理 </button></a>
+                        <a href="/LoginOut"><button class="layui-btn layui-btn-sm">退出登录</button> </a>
+                    {{end}}
+
+                </div>
+
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-md6">
+                            <a type="button" class="layui-btn layui-btn-primary layui-btn-fluid" href="/register" style="height: 40px; background-color: #FFFFFF;border-color:#FFFFFF;margin-top:10px;border-radius: 10px;
+ ">新人注册</a>
+                        </div>
+                        <div class="layui-col-md6">
+                            <a type="button" class="layui-btn layui-btn-primary layui-btn-fluid" href="/registerSeller" style="height: 40px; background-color: #FFFFFF;border-color:#FFFFFF;margin-top:10px;border-radius: 10px;
+ ">成为商家</a>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+<!--        内容-->
+        <div class="layui-row" style="margin-top: 10px;" >
+            <div class="layui-col-md8  layui-col-sm12 layui-col-md-offset2 "  >
+                <div class="layui-row" style="background-color: #FFFFFF;border-radius: 10px;box-shadow:
+  0px 0px 1.7px rgba(0, 0, 0, 0.024),
+  0px 0px 4.3px rgba(0, 0, 0, 0.035),
+  0px 0px 6px rgba(0, 0, 0, 0.047),
+  0px 0px 7px rgba(0, 0, 0, 0.06)
+;">
+                    <div class="layui-col-md12 layui-col-space25 " style="padding: 20px">
+                        {{range .Books}}
+                        <div class="layui-col-md2 layui-col-sm6"   >
+
+                            <div class="layui-row" >
+                                <a href="/details?bookId={{.Id}}" target="_blank" class="layui-card layui-col-md12" style="padding: 0px;height:100%;" id="aBody">
+                                    <div class="layui-row" style=" ">
+                                        <div class="layui-card-body" STYLE="width: 100%;margin: 0px;padding: 0px;" >
+                                            <img  src="{{.ImgPath}}" width="100%" height="100%" style="border-top-left-radius: 5px;border-top-right-radius: 5px;">
+                                        </div>
+                                    </div>
+                                    <div class="layui-row">
+                                        <div class="layui-card layui-col-md12" style="height: 100%;margin: 0px;padding: 5px">
+                                            <strong class="layui-col-md12" style="color:#FF4500">&nbsp;￥{{.Price}}&nbsp;&nbsp;</strong><br>
+                                            <h6 class="layui-col-md12" style="font-size: 2px;line-height: 15px">{{.Title}}</h6>
+                                            <strong class=" layui-col-md12 " style="font-size: 1px;line-height: 15px;color: #01aaed">&nbsp;{{.Sales}}&nbsp;条已成交</strong>
+                                            <span class="layui-col-md11 layui-badge layui-bg-cyan" style="margin: 5px;">{{.SellerPutaway}}</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+                <!--            翻页-->
+                <div class="layui-row">
+                    <div class="layui-col-md12"style="margin-top: 10px;">
+                        <div class="layui-col-md1  layui-col-md-offset2" >
+                            {{if .LastState}}
+                                <a class="layui-btn layui-btn-normal " href="/?Current={{.Last}}" >上一页</a>
+                            {{else}}
+                                <a class="layui-btn layui-btn-disabled " >上一页</a>
+                            {{end}}
+                        </div>
+                        <div class="layui-col-md4  layui-col-md-offset1 layui-progress" style="margin-top: 15px">
+                            <div class="layui-progress-bar " lay-percent="100%" style="background-color: #c2c2c2"></div>
+                        </div>
+                        <div class="layui-col-md1 layui-col-md-offset1" >
+                            {{if .NextState}}
+                                <a class="layui-btn layui-btn-normal" href="/?Current={{.Next}} ">下一页</a>
+                            {{else}}
+                                <a class="layui-btn layui-btn-disabled " >下一页</a>
+                            {{end}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    页脚-->
+    <div class="layui-row">
+        <div class="layui-col-md12" style="margin-top: 10px;height: 40px;margin-bottom: -200px">
+            <button type="button" class="layui-btn layui-btn-fluid" style="background-color: #FFFFFF;color: #2e2d3c;box-shadow:
+  0px 0px 2.2px rgba(0, 0, 0, 0.04),
+  0px 0px 5.5px rgba(0, 0, 0, 0.059),
+  0px 0px 7.7px rgba(0, 0, 0, 0.078),
+  0px 0px 9px rgba(0, 0, 0, 0.1)
+;
+">此网站由小唐有品维护</button>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

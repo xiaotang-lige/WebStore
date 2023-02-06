@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商户注册</title>
+  <link rel="stylesheet" type="text/css" href="/css/share.css">
+    <script src="/js/formV.js" ></script>
+</head>
+<script>
+
+</script>
+<body class="body">
+<div class="nav">
+    <div class="nav-centre">
+        <a href="/">首页</a>
+        {{if eq .S  "未登录"}}
+            <a href="/login">登录</a>
+            <a href="/register">用户注册</a>
+        {{else}}
+            {{if eq .S  "买家"}}
+                <a href="/LoginOut">注销</a>
+                <a href="/registerSeller">商户注册</a>
+                <a href="/">我的订单</a>
+            {{else}}
+                <a href="/seller">我的订单</a>
+            {{end}}
+
+        {{end}}
+    </div>
+</div>
+<div class="main">
+    <form action="/registerSeller" method="post">
+        用户名：
+        <input type="text" name="username" id="name" onblur="FormMiniVerify('name')"><span id="err_name"></span>
+        <br>
+        商户名：
+        <input type="text" name="sellername" id="sellerName" onblur="FormMiniVerify('sellerName')"><span id="err_sellerName"></span>
+        <br>
+        商户密码：
+        <input type="password" name="password" id="password" onblur="FormMiniVerify('password')"><span id="err_password"></span>
+        <br>
+        邮箱：
+        <input type="email" name="email" id="email" onblur="FormMiniVerify('email')"><span id="err_email"></span>
+        <br>
+        手机号码：
+        <input type="text" name="phone" id="phone" onblur="FormMiniVerify('phone')"><span id="err_phone"></span>
+        <br>
+        身份证号码：
+        <input type="text" name="usercard" id="number" onblur="FormMiniVerify('number')"><span id="err_number"></span>
+        <br>
+        Logo
+        <input type="file" name="myimg"><span id="err_file"></span>
+        <br>
+        <input type="submit" value="注册商户">
+        {{.Err}}
+        <br>
+    </form>
+</div>
+</body>
+</html>
