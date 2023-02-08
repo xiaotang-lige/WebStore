@@ -8,6 +8,10 @@
 
 ![img_4.png](img_4.png)
 
+bookStore/dao/sql.go 更改mysql账号密码
+
+bookStore/sql数据库结构表导入
+
 
 
 首页
