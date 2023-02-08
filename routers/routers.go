@@ -29,5 +29,5 @@ func init() {
 	http.HandleFunc("/addCart", controller.AddCart)
 	http.HandleFunc("/playHome", controller.PlayHome)
 	http.HandleFunc("/test", web.Test)
-	http.ListenAndServe(":8081", nil)
+	http.ListenAndServe(":8080", nil)
 }
